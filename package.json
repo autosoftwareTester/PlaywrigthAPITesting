@@ -1,0 +1,25 @@
+{
+  "name": "playwrightdemo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test",
+    "test:dev": "TEST_ENV=dev npx playwright test",
+    "test:staging": "TEST_ENV=staging npx playwright test",
+    "test:api:user": "npx playwright test tests/api-testing/tests/user.ts"
+  },
+  "keywords": [],
+  "author": "king",
+  "type": "commonjs",
+  "devDependencies": {
+    "@playwright/test": "^1.64.1",
+    "@types/node": "^26.6.5",
+    "@types/pino": "^7.0.4"
+  },
+  "dependencies": {
+    "pino": "^9.9.0",
+    "pino-http": "^10.2.0",
+    "pino-pretty": "^7.0.0"
+  }
+}
