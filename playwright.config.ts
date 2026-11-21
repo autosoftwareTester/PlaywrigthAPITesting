@@ -1,5 +1,5 @@
 import { defineConfig, devices, PlaywrightTestConfig } from "@playwright/test";
-import { getEnvironment } from "./api-src/config/environments";
+import { getEnvironment } from "./core/api/config/environments";
 
 const config: PlaywrightTestConfig = {
   testDir: "./tests",
@@ -10,13 +10,14 @@ const config: PlaywrightTestConfig = {
     extraHTTPHeaders: {
       "Content-Type": "application/json",
       "x-api-key": "",
+      Authorization: "Bearer <token>",
     },
     trace: "on-first-retry",
   },
   projects: [
     {
       name: "api-tests",
-      testMatch: "**/spec.ts",
+      testMatch: "**/*/spec.ts",
       retries: getEnvironment().retries,
     },
   ],

@@ -1,13 +1,15 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "../fixtures/test-fixtures";
 
 test.describe("All Test ", () => {
   const url = "https://playwright.dev/";
 
-  test("has title", async ({ page }) => {
-    await page.goto(url);
+  test("has title", async ({ loginPage }) => {
+    await loginPage.navigateToLoginPage(url);
+    const title = await loginPage.pageTitle();
 
-    // Expect a title "to contain" a substring.
-    await expect(page).toHaveTitle(/Playwright/);
+    expect(title).toBe(
+      "Fast and reliable end-to-end testing for modern web apps | Playwright",
+    );
   });
 
   test("get started link", { tag: ["@smoke", "@sanity"] }, async ({ page }) => {

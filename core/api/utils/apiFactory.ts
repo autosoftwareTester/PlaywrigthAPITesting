@@ -1,6 +1,6 @@
 import { APIRequestContext } from "@playwright/test";
-import { UserApi } from "../api/userApi";
-import { RegisterApi } from "../api/registerApi";
+import { UserApi } from "../base/userApi";
+import { RegisterApi } from "../base/registerApi";
 import { IApiFactory } from "./IApiFactory";
 
 // Factory Design Pattern
