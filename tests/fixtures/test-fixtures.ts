@@ -7,6 +7,7 @@ import { CommonUtils } from "../../core/api/utils/commonUtils";
 import { UserApi } from "../../core/api/base/userApi";
 import ApiContext from "../../core/api/utils/apiContext";
 import { RegisterApi } from "../../core/api/base/registerApi";
+import { BrowserFactory } from "../../core/web/base/BrowserFactory";
 
 // Step 1: Define the fixture type
 type WorkerFixture = {
@@ -19,6 +20,7 @@ type WorkerFixture = {
   logger: typeof logger;
   httpLogger: typeof httpLogger;
   commonUtils: CommonUtils;
+  webTestFactory: BrowserFactory;
 };
 
 // Step 2: Define the fixture
@@ -31,6 +33,12 @@ export const test = base.extend<WorkerFixture>({
   dashboardPage: async ({ page }, use) => {
     const dashboardPage = new DashboardPage(page);
     await use(dashboardPage);
+  },
+  logger: async ({}, use) => {
+    await use(logger);
+  },
+  httpLogger: async ({}, use) => {
+    await use(httpLogger);
   },
   userApi: async ({}, use) => {
     // setup API request context
@@ -53,6 +61,10 @@ export const test = base.extend<WorkerFixture>({
 
     // teardown logic for the fixture
     logger.info(`CommonUtils tests suite finished.`);
+  },
+  webTestFactory: async ({ page }, use) => {
+    //const page = await new BrowserFactory();
+    await use(new BrowserFactory());
   },
 });
 

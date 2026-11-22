@@ -1,9 +1,18 @@
+import { request } from "@playwright/test";
 import { test, expect } from "../fixtures/test-fixtures";
 
-test("Test case", async ({ userApi, logger, commonUtils }) => {
+test("Test case", async ({ userApi, logger, commonUtils, page }) => {
+  const response = await userApi.getUser(1);
 
+  // page.route("**/api/users", (route) =>
+  //   route.fulfill({ json: [{ id: 1, name: "sam" }] }),
+  // );
+
+  console.log(response.ok());
+  console.log(response.status);
   logger.info(`${commonUtils.generateRandomString(10)}`);
 });
+
 test.describe("Test case ", async () => {
   process.stdout.write("Test Suite Level");
 

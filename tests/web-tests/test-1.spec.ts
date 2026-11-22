@@ -7,7 +7,7 @@ test.describe("Run All", async () => {
       ignoreDefaultArgs: false,
       channel: "chrome",
       slowMo: 10,
-      timeout: 50000,
+      timeout: 5000,
     });
 
     const context = await browserInstance.newContext();
@@ -41,6 +41,7 @@ test.describe("Run All", async () => {
   test("API test", async ({ request }) => {
     request.get<any>("", {});
   });
+
   test("API test one", async ({ page }) => {
     const [newPage] = await Promise.all([
       await page.waitForEvent("load"),

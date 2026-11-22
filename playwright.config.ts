@@ -5,6 +5,7 @@ const config: PlaywrightTestConfig = {
   testDir: "./tests",
   timeout: getEnvironment().timeouts,
   reporter: "html",
+  retries: 2,
   use: {
     baseURL: getEnvironment().baseUrl,
     extraHTTPHeaders: {
@@ -17,14 +18,14 @@ const config: PlaywrightTestConfig = {
   projects: [
     {
       name: "api-tests",
-      testMatch: "**/*/spec.ts",
+      testMatch: "**/*.spec.ts",
       retries: getEnvironment().retries,
     },
   ],
 };
 export default config;
 
-// export default defineConfig({
+// export defau lt defineConfig({
 //   testDir: "./tests",
 //   timeout: getEnvironment().timeouts,
 //   /* Run tests in files in parallel */

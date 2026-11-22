@@ -3,9 +3,11 @@ import { logger } from "../utils/logger";
 
 // Template Method Design Pattern
 // Abstract Common Functionalities
+
 abstract class BaseApi {
   protected readonly request: APIRequestContext;
   protected baseUrl: string = "https://reqres.in";
+
   constructor(request: APIRequestContext) {
     this.request = request;
   }
