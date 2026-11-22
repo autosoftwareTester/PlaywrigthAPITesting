@@ -1,12 +1,13 @@
 import { test, expect } from "../fixtures/test-fixtures";
 
-test.describe("All Test ", () => {
+test.describe("Run All Test ", () => {
   const url = "https://playwright.dev/";
 
   test("has title", async ({ loginPage }) => {
     await loginPage.navigateToLoginPage(url);
     const title = await loginPage.pageTitle();
 
+    expect.soft("sam").not.toBeNull();
     expect(title).toBe(
       "Fast and reliable end-to-end testing for modern web apps | Playwright",
     );

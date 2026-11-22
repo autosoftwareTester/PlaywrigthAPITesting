@@ -1,4 +1,3 @@
-import { error, info, trace, warn } from "node:console";
 import pino from "pino";
 import pinoHttp from "pino-http";
 
@@ -13,7 +12,6 @@ const logger = pino({
       levelFirst: true,
       messageFormat: `{msg}`,
       ignore: "pid,hostname",
-      customeLevels: { error: 50, warn: 40, info, debug: 20, trace: 10 },
       customColors: "error:red,warn:yellow,info:green,debug:blue,trace:magenta",
     },
   },

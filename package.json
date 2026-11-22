@@ -7,7 +7,7 @@
     "test": "npx playwright test",
     "test:dev": "TEST_ENV=dev npx playwright test",
     "test:staging": "TEST_ENV=staging npx playwright test",
-    "test:api:user": "npx playwright test tests/api-testing/tests/user.ts"
+    "test:api:user": "npx playwright test tests/api-tests/userApiTest.spec.ts"
   },
   "keywords": [],
   "author": "king",
