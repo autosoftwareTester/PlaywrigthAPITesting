@@ -63,7 +63,7 @@ export const test = base.extend<WorkerFixture>({
     logger.info(`CommonUtils tests suite finished.`);
   },
   webTestFactory: async ({ page }, use) => {
-    //const page = await new BrowserFactory();
+    logger.info(`Factory Instance created and to be with the classes`)
     await use(new BrowserFactory());
   },
 });

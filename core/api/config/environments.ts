@@ -4,19 +4,18 @@ export interface Environment {
   baseUrl: string;
   apiKey?: string;
   timeouts: number;
-  retries: number;
 }
 
 export const environments: Record<string, Environment> = {
   dev: {
     baseUrl: "https://reqres.in/api",
-    timeouts: 3000,
-    retries: 2,
+    apiKey: process.env.REQRES_API_KEY,
+    timeouts: 10_000,
   },
   staging: {
-    baseUrl: "https://reqres.in/api/users",
-    timeouts: 3000,
-    retries: 2,
+    baseUrl: "https://reqres.in/api",
+    apiKey: process.env.REQRES_API_KEY,
+    timeouts: 10_000,
   },
 };
 

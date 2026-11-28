@@ -11,16 +11,16 @@ export class UserApi extends BaseApi {
 
   public async CreateUser(userData: { name: string; job: string }) {
     return await this.post(`${this.endpoint}`, {
-      userData,
+      ...userData,
     });
   }
 
   public async UpdateUser(
     userId: string,
-    userData: string,
+    userData: { name: string; job: string },
   ): Promise<APIResponse> {
     return await this.put(`${this.endpoint}/${userId}`, {
-      userData,
+      ...userData,
     });
   }
 

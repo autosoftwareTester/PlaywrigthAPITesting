@@ -14,12 +14,15 @@
   "type": "commonjs",
   "devDependencies": {
     "@playwright/test": "^1.65.0",
-    "@types/node": "^26.6.5",
-    "@types/pino": "^7.0.4"
+    "@types/node": "^26.6.10",
+    "@types/pino": "^7.0.4",
+    "@types/xlsx": "^0.0.35"
   },
   "dependencies": {
+    "path": "^0.12.7",
     "pino": "^9.9.0",
     "pino-http": "^10.2.0",
-    "pino-pretty": "^7.0.0"
+    "pino-pretty": "^7.0.0",
+    "xlsx": "^0.18.5"
   }
 }

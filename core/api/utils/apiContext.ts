@@ -1,5 +1,5 @@
 import { request, APIRequestContext } from "@playwright/test";
-import config from "../../../playwright.config";
+import { getEnvironment } from "../config/environments";
 
 // Singleton Pattern
 class ApiContext {
@@ -8,9 +8,13 @@ class ApiContext {
 
   public static async getAPIRequestInstance(): Promise<APIRequestContext> {
     if (!this.apiRequestContext) {
+      const environment = getEnvironment();
       this.apiRequestContext = await request.newContext({
-        baseURL: config.use?.baseURL,
-        extraHTTPHeaders: config.use?.extraHTTPHeaders,
+        baseURL: environment.baseUrl,
+        timeout: environment.timeouts,
+        extraHTTPHeaders: environment.apiKey
+          ? { "x-api-key": environment.apiKey }
+          : {},
       });
     }
     return this.apiRequestContext;

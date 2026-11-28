@@ -1,50 +1,25 @@
-import { request } from "@playwright/test";
 import { test, expect } from "../fixtures/test-fixtures";
 
-test("Test case", async ({ userApi, logger, commonUtils, page }) => {
-  const response = await userApi.getUser(1);
+test.describe("User API", () => {
+  test.skip(
+    !process.env.REQRES_API_KEY,
+    "Set REQRES_API_KEY to run authenticated ReqRes tests.",
+  );
 
-  // page.route("**/api/users", (route) =>
-  //   route.fulfill({ json: [{ id: 1, name: "sam" }] }),
-  // );
+  test("gets a user by ID", async ({ userApi }) => {
+    const response = await userApi.getUser(1);
+    expect(response.status()).toBe(200);
+    expect((await response.json()).data.id).toBe(1);
+  });
 
-  console.log(response.ok());
-  console.log(response.status);
-  logger.info(`${commonUtils.generateRandomString(10)}`);
-});
-
-test.describe("Test case ", async () => {
-  process.stdout.write("Test Suite Level");
-
-  test("Should create a new user", async ({ userApi, logger, commonUtils }) => {
+  test("creates a user", async ({ userApi }) => {
     const userData = { name: "sam", job: "tester" };
-    const userApiResponse = await userApi.CreateUser(userData);
+    const response = await userApi.CreateUser(userData);
+    const responseBody = await response.json();
 
-    logger.info(
-      `Test case 1: Should create a new user response: ${commonUtils.generateRandomString(10)}`,
-    );
-    logger.info(
-      `Test case 1: Should create a new user response: ${JSON.stringify(userApiResponse)}`,
-    );
-
-    userApiResponse.ok()
-      ? logger.info(`Test case 1: Should create a new user response is OK`)
-      : logger.error(
-          `Test case 1: Should create a new user response is NOT OK`,
-        );
-
-    const responseBody = await userApiResponse.json();
-
-    //Assertion
-    expect(userApiResponse.timing()).toBeGreaterThan(1);
-    expect(userApiResponse.status).toBe(201);
-
+    expect(response.status()).toBe(201);
     expect(responseBody.name).toBe(userData.name);
     expect(responseBody.job).toBe(userData.job);
-    expect(responseBody.createdAt).not.toBeNull();
-
-    test.afterAll(async () => {
-      logger.info("Test case 1: Should create a new user finished");
-    });
+    expect(responseBody.createdAt).toBeTruthy();
   });
 });
